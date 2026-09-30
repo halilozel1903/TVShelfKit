@@ -4,11 +4,22 @@ private struct ShelfMetricsKey: EnvironmentKey {
     static let defaultValue = ShelfMetrics.platformDefault
 }
 
+private struct ShelfParallaxInsetKey: EnvironmentKey {
+    static let defaultValue: CGFloat = 0
+}
+
 extension EnvironmentValues {
     /// Sizes and spacing used by every TVShelfKit view below.
     public var shelfMetrics: ShelfMetrics {
         get { self[ShelfMetricsKey.self] }
         set { self[ShelfMetricsKey.self] = newValue }
+    }
+
+    /// How far artwork inside a card can be cut off on either side by the parallax effect.
+    /// Keep text in custom artwork at least this far from the leading and trailing edges.
+    public var shelfParallaxInset: CGFloat {
+        get { self[ShelfParallaxInsetKey.self] }
+        set { self[ShelfParallaxInsetKey.self] = newValue }
     }
 }
 

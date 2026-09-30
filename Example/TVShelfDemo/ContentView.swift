@@ -36,6 +36,8 @@ struct HomeView: View {
         // The bar sits above the scroll view, so rows scrolled up never slide under it.
         VStack(spacing: 0) {
             TopBar()
+                .background(Color(white: 0.06))
+                .zIndex(1)
             ShelfBrowser(
                 hero: SampleCatalog.featured,
                 shelves: SampleCatalog.shelves,
@@ -43,6 +45,8 @@ struct HomeView: View {
                 heroAutoAdvances: heroAutoAdvances,
                 onSelect: onSelect
             )
+            // tvOS scroll views draw outside their bounds so focused cards can grow; keep rows below the bar.
+            .clipped()
         }
         .background(Color(white: 0.06))
         .ignoresSafeArea()

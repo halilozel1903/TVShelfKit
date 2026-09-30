@@ -79,6 +79,7 @@ struct ShelfParallax<Content: View>: View {
                     maxOffset: Double(amount)
                 )
                 content
+                    .environment(\.shelfParallaxInset, amount * 2)
                     .frame(width: proxy.size.width + amount * 2, height: proxy.size.height)
                     .offset(x: CGFloat(offset) - amount)
             }
@@ -98,6 +99,8 @@ public struct ShelfPlaceholderArtwork: View {
         self.item = item
         self.slot = slot
     }
+
+    @Environment(\.shelfParallaxInset) private var parallaxInset
 
     public var body: some View {
         let palette = ArtworkPalette(seed: item.id)
@@ -138,8 +141,9 @@ public struct ShelfPlaceholderArtwork: View {
                         .minimumScaleFactor(0.5)
                         .multilineTextAlignment(.leading)
                         .shadow(color: Color.black.opacity(0.35), radius: 6, x: 0, y: 3)
-                        .frame(width: max(0, size.width - side * 0.18), alignment: .leading)
-                        .padding(side * 0.09)
+                        .frame(width: max(0, size.width - side * 0.18 - parallaxInset * 2), alignment: .leading)
+                        .padding(.vertical, side * 0.09)
+                        .padding(.horizontal, side * 0.09 + parallaxInset)
                         .frame(width: size.width, height: size.height, alignment: .bottomLeading)
                 }
             }
