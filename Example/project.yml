@@ -1,0 +1,34 @@
+name: TVShelfDemo
+options:
+  bundleIdPrefix: io.github.halilozel1903
+  deploymentTarget:
+    tvOS: "18.0"
+packages:
+  TVShelfKit:
+    path: ..
+targets:
+  TVShelfDemo:
+    type: application
+    platform: tvOS
+    sources:
+      - TVShelfDemo
+    dependencies:
+      - package: TVShelfKit
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.halilozel1903.TVShelfDemo
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: TVShelf Demo
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIUserInterfaceStyle: Dark
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        SWIFT_VERSION: "6.0"
+        TARGETED_DEVICE_FAMILY: "3"
+schemes:
+  TVShelfDemo:
+    build:
+      targets:
+        TVShelfDemo: all
+    run:
+      config: Debug
