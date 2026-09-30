@@ -33,15 +33,16 @@ struct HomeView: View {
     var onSelect: (ShelfItem) -> Void
 
     var body: some View {
-        ShelfBrowser(
-            hero: SampleCatalog.featured,
-            shelves: SampleCatalog.shelves,
-            initialFocus: initialFocus,
-            heroAutoAdvances: heroAutoAdvances,
-            onSelect: onSelect
-        )
-        .overlay(alignment: .top) {
+        // The bar sits above the scroll view, so rows scrolled up never slide under it.
+        VStack(spacing: 0) {
             TopBar()
+            ShelfBrowser(
+                hero: SampleCatalog.featured,
+                shelves: SampleCatalog.shelves,
+                initialFocus: initialFocus,
+                heroAutoAdvances: heroAutoAdvances,
+                onSelect: onSelect
+            )
         }
         .background(Color(white: 0.06))
         .ignoresSafeArea()
@@ -68,10 +69,7 @@ private struct TopBar: View {
         }
         .padding(.horizontal, 80)
         .padding(.top, 50)
-        .padding(.bottom, 40)
-        .background(
-            LinearGradient(colors: [Color.black.opacity(0.7), Color.clear], startPoint: .top, endPoint: .bottom)
-        )
+        .padding(.bottom, 24)
         .allowsHitTesting(false)
         .accessibilityHidden(true)
     }

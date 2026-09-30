@@ -138,7 +138,9 @@ public struct ShelfPlaceholderArtwork: View {
                         .minimumScaleFactor(0.5)
                         .multilineTextAlignment(.leading)
                         .shadow(color: Color.black.opacity(0.35), radius: 6, x: 0, y: 3)
+                        .frame(width: max(0, size.width - side * 0.18), alignment: .leading)
                         .padding(side * 0.09)
+                        .frame(width: size.width, height: size.height, alignment: .bottomLeading)
                 }
             }
             .frame(width: size.width, height: size.height)
